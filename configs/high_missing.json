@@ -1,0 +1,111 @@
+{
+  "scenario": "high_missing_rate",
+  "description": "Rigorous high-missing benchmark on MUStARD++ (60% vs 80%) with controlled settings: only missing_rate changes within each model.",
+  "base_config": "config/config_regression.json",
+  "seeds": [
+    1111,
+    1112,
+    1113
+  ],
+  "model_dir": "saved_models/high_missing",
+  "log_dir": "logs/high_missing",
+  "result_dir": "results/high_missing",
+  "runs": [
+    {
+      "id": "mustardpp_missing60_camfn",
+      "model": "camfn",
+      "dataset": "mustardpp",
+      "notes": "Controlled CAMFN run at missing rate 0.6.",
+      "overrides": {
+        "data_missing": true,
+        "apply_missing_to_input": true,
+        "missing_rate": [
+          0.6,
+          0.6,
+          0.6
+        ],
+        "missing_seed": [
+          1111,
+          1111,
+          1111
+        ],
+        "enable_conflict": true,
+        "enable_triad": true,
+        "featurePath_train": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_valid": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_test": "datasets/MUStARD++/Processed/mustard++_features.pkl"
+      }
+    },
+    {
+      "id": "mustardpp_missing80_camfn",
+      "model": "camfn",
+      "dataset": "mustardpp",
+      "notes": "Controlled CAMFN run at missing rate 0.8 (same settings as 0.6 except missing_rate).",
+      "overrides": {
+        "data_missing": true,
+        "apply_missing_to_input": true,
+        "missing_rate": [
+          0.8,
+          0.8,
+          0.8
+        ],
+        "missing_seed": [
+          1111,
+          1111,
+          1111
+        ],
+        "enable_conflict": true,
+        "enable_triad": true,
+        "featurePath_train": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_valid": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_test": "datasets/MUStARD++/Processed/mustard++_features.pkl"
+      }
+    },
+    {
+      "id": "mustardpp_missing60_tetfn",
+      "model": "tetfn",
+      "dataset": "mustardpp",
+      "notes": "Controlled TETFN run at missing rate 0.6.",
+      "overrides": {
+        "data_missing": true,
+        "apply_missing_to_input": true,
+        "missing_rate": [
+          0.6,
+          0.6,
+          0.6
+        ],
+        "missing_seed": [
+          1111,
+          1111,
+          1111
+        ],
+        "featurePath_train": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_valid": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_test": "datasets/MUStARD++/Processed/mustard++_features.pkl"
+      }
+    },
+    {
+      "id": "mustardpp_missing80_tetfn",
+      "model": "tetfn",
+      "dataset": "mustardpp",
+      "notes": "Controlled TETFN run at missing rate 0.8 (same settings as 0.6 except missing_rate).",
+      "overrides": {
+        "data_missing": true,
+        "apply_missing_to_input": true,
+        "missing_rate": [
+          0.8,
+          0.8,
+          0.8
+        ],
+        "missing_seed": [
+          1111,
+          1111,
+          1111
+        ],
+        "featurePath_train": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_valid": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_test": "datasets/MUStARD++/Processed/mustard++_features.pkl"
+      }
+    }
+  ]
+}

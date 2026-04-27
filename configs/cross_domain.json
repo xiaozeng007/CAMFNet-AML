@@ -1,0 +1,57 @@
+{
+  "scenario": "cross_domain",
+  "description": "Cross-dataset transfer focused on MUStARD++ to highlight sarcasm domain robustness.",
+  "base_config": "config/config_regression.json",
+  "seeds": [
+    1111,
+    1112,
+    1113
+  ],
+  "model_dir": "saved_models/cross_domain",
+  "log_dir": "logs/cross_domain",
+  "result_dir": "results/cross_domain",
+  "runs": [
+    {
+      "id": "mustardpp_only_camfn",
+      "model": "camfn",
+      "dataset": "mustardpp",
+      "notes": "CAMFN on MUStARD++ with explicit/implicit heads (train/val/test all MUStARD++).",
+      "overrides": {
+        "scenario_tag": "mustardpp_only",
+        "featurePath_train": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_valid": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_test": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "train_samples": 840,
+        "freeze_bert_layers": 10,
+        "unfreeze_start_epoch": 6,
+        "learning_rate_bert": 2e-05,
+        "learning_rate_other": 8e-05,
+        "lambda_exp": 0.3,
+        "lambda_imp": 0.3,
+        "lambda_affect": 0.08,
+        "lambda_cons": 0.2,
+        "lambda_cons_main": 0.1,
+        "lambda_ctr": 0.2,
+        "use_reg_head": true,
+        "num_emotions": 7
+      }
+    },
+    {
+      "id": "mustardpp_only_tetfn",
+      "model": "tetfn",
+      "dataset": "mustardpp",
+      "notes": "TETFN baseline on MUStARD++ (train/val/test all MUStARD++).",
+      "overrides": {
+        "scenario_tag": "mustardpp_only",
+        "featurePath_train": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_valid": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_test": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "train_samples": 840,
+        "freeze_bert_layers": 10,
+        "learning_rate_bert": 2e-05,
+        "learning_rate_other": 8e-05,
+        "early_stop": 10
+      }
+    }
+  ]
+}

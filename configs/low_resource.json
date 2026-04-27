@@ -1,0 +1,97 @@
+{
+  "scenario": "low_resource",
+  "description": "Sub-sample MUStARD++ (50% / 25%) to highlight CAMFN advantages in few-shot regimes.",
+  "base_config": "config/config_regression.json",
+  "seeds": [
+    1111,
+    1113,
+    1115
+  ],
+  "model_dir": "saved_models/low_resource",
+  "log_dir": "logs/low_resource",
+  "result_dir": "results/low_resource",
+  "runs": [
+    {
+      "id": "mustardpp_half_camfn",
+      "model": "camfn",
+      "dataset": "mustardpp",
+      "notes": "Use only 50% of MUStARD++ training data.",
+      "overrides": {
+        "train_subset_ratio": 0.5,
+        "train_subset_seed": 2024,
+        "early_stop": 4,
+        "dropout": 0.55,
+        "encoder_dropout": 0.35,
+        "lambda_cons": 0.15,
+        "lambda_cons_main": 0.08,
+        "lambda_ctr": 0.08,
+        "lambda_exp": 0.05,
+        "lambda_imp": 0.05,
+        "featurePath_train": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_valid": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_test": "datasets/MUStARD++/Processed/mustard++_features.pkl"
+      }
+    },
+    {
+      "id": "mustardpp_half_tetfn",
+      "model": "tetfn",
+      "dataset": "mustardpp",
+      "notes": "Baseline MUStARD++ half-data run.",
+      "overrides": {
+        "train_subset_ratio": 0.5,
+        "train_subset_seed": 2024,
+        "epochs": 15,
+        "grad_clip": 0.9,
+        "attn_dropout": 0.08,
+        "relu_dropout": 0.18,
+        "embed_dropout": 0.18,
+        "res_dropout": 0.18,
+        "featurePath_train": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_valid": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_test": "datasets/MUStARD++/Processed/mustard++_features.pkl"
+      }
+    },
+    {
+      "id": "mustardpp_quarter_camfn",
+      "model": "camfn",
+      "dataset": "mustardpp",
+      "notes": "Severely limited (25%) MUStARD++ split with stronger regularization.",
+      "overrides": {
+        "train_subset_ratio": 0.25,
+        "train_subset_seed": 7,
+        "dropout": 0.6,
+        "encoder_dropout": 0.4,
+        "learning_rate_bert": 1.5e-05,
+        "learning_rate_other": 9e-05,
+        "lambda_cons": 0.1,
+        "lambda_cons_main": 0.05,
+        "lambda_ctr": 0.05,
+        "warmup_ratio": 0.15,
+        "featurePath_train": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_valid": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_test": "datasets/MUStARD++/Processed/mustard++_features.pkl"
+      }
+    },
+    {
+      "id": "mustardpp_quarter_tetfn",
+      "model": "tetfn",
+      "dataset": "mustardpp",
+      "notes": "Baseline for the same MUStARD++ low-resource split.",
+      "overrides": {
+        "train_subset_ratio": 0.25,
+        "train_subset_seed": 7,
+        "epochs": 18,
+        "grad_clip": 0.9,
+        "attn_dropout": 0.12,
+        "relu_dropout": 0.2,
+        "embed_dropout": 0.2,
+        "res_dropout": 0.2,
+        "learning_rate_bert": 1.5e-05,
+        "learning_rate_other": 9e-05,
+        "featurePath_train": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_valid": "datasets/MUStARD++/Processed/mustard++_features.pkl",
+        "featurePath_test": "datasets/MUStARD++/Processed/mustard++_features.pkl"
+      }
+    }
+  ]
+}
