@@ -1,0 +1,21 @@
+name: cafnet-aml
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pytorch
+  - numpy
+  - pandas
+  - scikit-learn
+  - scipy
+  - matplotlib
+  - pillow
+  - opencv
+  - pip:
+      - easydict
+      - transformers
+      - huggingface-hub
+      - mysql-connector-python
+      - tabulate
