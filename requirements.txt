@@ -1,0 +1,13 @@
+numpy
+pandas
+scikit-learn
+scipy
+torch
+easydict
+transformers
+huggingface-hub
+matplotlib
+opencv-python
+Pillow
+mysql-connector-python
+tabulate
